@@ -9,6 +9,8 @@ const getDropdown = async () => {
       content = document.createElement("p");
 
     content.textContent = key;
+    content.onclick = copyMessage(template);
+
     dropdown.appendChild(content);
   }
 

@@ -15,7 +15,10 @@ const main = async () => {
 
   initializeDropdown(container, button);
 
-  // addTemplate("Not interested", "Hi {name}, \nLorem ipsum dolor sit amet.");
+  // addTemplate(
+  //   "Not interested",
+  //   "Hi {first-name}, \nLorem ipsum dolor sit amet.\nBest,\n{my-first-name}"
+  // );
 
   // const templates = await getTemplates();
   // console.log("Templates:", templates);

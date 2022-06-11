@@ -24,7 +24,10 @@
       "matches": ["https://*.linkedin.com/messaging/*"],
       "css": ["main.css"],
       "js": [
+        "utils/index.js",
+        "utils/people.js",
         "utils/storage.js",
+        "utils/messaging.js",
         "components/svg.js",
         "components/dropdown.js",
         "main.js"

@@ -6,7 +6,6 @@ const getDropdown = async () => {
   dropdown.appendChild(dropdownList);
 
   const templates = await getTemplates();
-  const keys = Object.keys(templates);
 
   const messagesList = document.querySelector("#message-list-ember4");
 
@@ -14,15 +13,9 @@ const getDropdown = async () => {
   pasteInfoDiv.className = "linkedin-chat-paste-info t-12";
   pasteInfoDiv.textContent = "Paste your message below";
 
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i],
-      template = templates[key],
-      item = document.createElement("p"),
-      last = i === keys.length - 1;
-
-    if (last) {
-      item.style.setProperty("border-bottom", "none");
-    }
+  for (let key in templates) {
+    const template = templates[key],
+      item = document.createElement("p");
 
     item.setAttribute("class", "linkedin-chat-dropdown-item");
     item.textContent = key;
@@ -31,7 +24,6 @@ const getDropdown = async () => {
       copyMessage(template)();
       document.body.click();
 
-      console.log(messagesList);
       messagesList.appendChild(pasteInfoDiv);
     };
 

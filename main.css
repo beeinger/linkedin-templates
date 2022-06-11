@@ -53,6 +53,10 @@
   border-bottom: 1px solid #e6e6e6;
 }
 
+.linkedin-chat-dropdown-item:last-child {
+  border-bottom: none;
+}
+
 .linkedin-chat-dropdown-item:hover {
   background-color: #fafafa;
   cursor: pointer;

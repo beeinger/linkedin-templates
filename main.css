@@ -1,0 +1,34 @@
+.linkedin-chat-svg {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.linkedin-chat-svg-child {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+}
+
+.linkedin-chat-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkedin-chat-container {
+  position: relative;
+  display: inline-block;
+}
+
+.linkedin-chat-dropdown {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+  top: 0px;
+  transform: translateY(-100%);
+}

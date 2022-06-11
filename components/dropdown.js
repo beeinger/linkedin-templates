@@ -1,17 +1,41 @@
 const getDropdown = async () => {
   let dropdown = document.createElement("div");
   dropdown.setAttribute("class", "linkedin-chat-dropdown");
+  let dropdownList = document.createElement("div");
+  dropdownList.setAttribute("class", "linkedin-chat-dropdown-list");
+  dropdown.appendChild(dropdownList);
 
   const templates = await getTemplates();
+  const keys = Object.keys(templates);
 
-  for (let key in templates) {
-    const template = templates[key],
-      content = document.createElement("p");
+  const messagesList = document.querySelector("#message-list-ember4");
 
-    content.textContent = key;
-    content.onclick = copyMessage(template);
+  let pasteInfoDiv = document.createElement("div");
+  pasteInfoDiv.className = "linkedin-chat-paste-info t-12";
+  pasteInfoDiv.textContent = "Paste your message below";
 
-    dropdown.appendChild(content);
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i],
+      template = templates[key],
+      item = document.createElement("p"),
+      last = i === keys.length - 1;
+
+    if (last) {
+      item.style.setProperty("border-bottom", "none");
+    }
+
+    item.setAttribute("class", "linkedin-chat-dropdown-item");
+    item.textContent = key;
+
+    item.onclick = () => {
+      copyMessage(template)();
+      document.body.click();
+
+      console.log(messagesList);
+      messagesList.appendChild(pasteInfoDiv);
+    };
+
+    dropdownList.appendChild(item);
   }
 
   return dropdown;
@@ -22,24 +46,25 @@ const initializeDropdown = async (container, button) => {
   dropdown = container.appendChild(dropdown);
 
   const clickListener = (e) => {
-      if (container.contains(e.target)) return;
+    if (container.contains(e.target)) return;
+    dropdown.style.setProperty("display", "none");
+    document.removeEventListener("click", clickListener);
+    button.onclick = onClick;
+  };
+
+  const onClick = () => {
+    document.removeEventListener("click", clickListener);
+
+    dropdown.style.setProperty("display", "block");
+
+    button.onclick = () => {
       dropdown.style.setProperty("display", "none");
       document.removeEventListener("click", clickListener);
       button.onclick = onClick;
-    },
-    onClick = () => {
-      document.removeEventListener("click", clickListener);
-
-      dropdown.style.setProperty("display", "block");
-
-      button.onclick = () => {
-        dropdown.style.setProperty("display", "none");
-        document.removeEventListener("click", clickListener);
-        button.onclick = onClick;
-      };
-
-      document.addEventListener("click", clickListener);
     };
+
+    document.addEventListener("click", clickListener);
+  };
 
   button.onclick = onClick;
 };
